@@ -1,8 +1,9 @@
+//Get all entries in DB, then call showBooks
 function getAll(){
     fetch('/all').then(response => response.json()).then(data => showBooks(data));
 }
 
-
+//Create new Entry in DB. Take input from 3 input fields, send POST request and display json result to console
 function createNew(){
     let name = document.getElementById('name').value;
     let author = document.getElementById('author').value;
@@ -22,7 +23,7 @@ function createNew(){
 }
 
 
-
+//Get all list titles. Pass json data through for loop, creating 3 p elements for each part. Append these to relevant list title. 
 function showBooks(data){
     let nameList = document.getElementById('name-list');
     let authorList = document.getElementById('author-list');
@@ -62,6 +63,7 @@ function showBooks(data){
 
 }
 
+//Send PATCH request with new name to update DB entry with. WIP
 function update(id){
  
         let name = document.getElementById('newName').value;
@@ -77,10 +79,13 @@ function update(id){
     }).then(response => response.json());
 }
 
+
+//Generate new 'Change value' button
 function createButton(id){
     let button = document.createElement('button');
     button.id = id;
     button.innerText = 'Change value';
+    
     button.addEventListener('click', function() {update(id)});
     return button;
 }

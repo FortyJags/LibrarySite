@@ -32,3 +32,21 @@ app.get('/', (req, res) =>{
 app.listen(port, () =>{
     console.log('Listening to 3500');
 });
+
+app.get('/all', async (req, res) =>{
+    let data = await Model.find();
+    res.send(data);
+});
+
+app.post('/create', (req, res) =>{
+    let data = new Model(req.body);
+    data.save();
+    res.send(data);
+});
+
+app.patch('/update/:id', (req, res) =>{
+    const updateData = req.body;
+    let options = { new: true};
+    let data = Model.findByIdAndUpdate(req.params.id, updateData, options);
+    res.send(data);
+})
