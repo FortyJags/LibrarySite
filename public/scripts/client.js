@@ -67,14 +67,18 @@ function showBooks(data){
 function update(id){
  
         let name = document.getElementById('newName').value;
-        console.log(name);
+        let author = document.getElementById(`${id}author`).textContent;
+        let genre = document.getElementById(`${id}genre`).textContent;
+     
     fetch(`/update/${id}`, {
         method: 'PATCH',
         headers:{
             'Content-type' : 'application/json'
         },
         body: JSON.stringify({
-            'name': name
+            'name': name,
+            'author': author,
+            'genre' : genre
         })
     }).then(response => response.json());
 }
