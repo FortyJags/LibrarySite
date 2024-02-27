@@ -62,7 +62,7 @@ function showBooks(data){
 
 }
 
-//Send PATCH request with new name to update DB entry with. WIP
+//Send PATCH request with new value to update DB entry with. 
 function update(id){
  
     let newValue = document.getElementById('newName').value;    
@@ -90,7 +90,7 @@ function createButton(id){
     return button;
 }
 
-
+//Create select element, call createSelectOptions to create options for populating  newly formed select
 function createSelect(id){
     let select = document.createElement('select');
     select.id = `${id}value`;
@@ -104,7 +104,7 @@ function createSelect(id){
     return select;
 }
 
-
+//Create option for select element using specified name as value
  function createSelectOptions(name){
     let selectOption = document.createElement('option');
     selectOption.textContent = name;
