@@ -76,9 +76,19 @@ function update(id){
         body: JSON.stringify({
             [valueToChange] : newValue
         })
-    }).then(response => response.json());
+    }).then(res => res.json());
 }
 
+
+function deleteItem(id){
+    fetch(`/delete/${id}`, {
+        method:'DELETE',
+        headers:{
+            'Content-type' : 'application/json'
+        }
+    }).then(res => console.log(res));
+    
+}
 
 //Generate new 'Change value' button
 function createButton(id){

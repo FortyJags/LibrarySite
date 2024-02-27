@@ -44,10 +44,13 @@ app.post('/create', (req, res) =>{
     res.send(data);
 });
 
-app.patch('/update/:id', async (req, res) =>{
-    console.log('patch request called');
-    console.log(req.body);
+app.patch('/update/:id', async (req, res) =>{    
     const updateData = req.body;
      let data = await Model.findByIdAndUpdate(req.params.id, updateData);
     res.send(data);
-})
+});
+
+app.delete('/delete/:id', async (req, res) =>{
+    let deletedItem = await Model.findByIdAndDelete(req.params.id);
+    res.send(deletedItem);
+});
