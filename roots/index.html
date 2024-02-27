@@ -14,10 +14,16 @@
     <input id="genre" placeholder="genre">
     <input id="author" placeholder="author">
     <button onclick="createNew()">Create new</button>
-    <br/>
-    <button onclick="deleteItem('65d90704d892e4fdb6ce462b')">deleteItem</button>
+    <button onclick="update()">Update 1</button>
+    <select id="valueToChange">
+        <option value="name">Name</option>
+        <option value="author">Author</option>
+        <option value="genre">Genre</option>
+    </select>
+    <br/>    
     <input id="newName" placeholder="newName">
     <div id="books">
+    <p class="focus-styles" id="focus-list"></p>
     <p class="list" id="name-list">Name</p>
     <p class="list" id="author-list">Author</p>
     <p class="list" id="genre-list">Genre</p>

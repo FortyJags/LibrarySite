@@ -28,10 +28,8 @@ function showBooks(data){
     let nameList = document.getElementById('name-list');
     let authorList = document.getElementById('author-list');
     let genreList = document.getElementById('genre-list');
-    let buttonList = document.getElementById('button-list');
+    let focusList = document.getElementById('focus-list');
 
-    let elements = [nameList, authorList, genreList];
-    let idName = ['name', 'author', 'genre'];
    
 
    for(let i = 0; i < data.length; i++){
@@ -52,21 +50,20 @@ function showBooks(data){
         nameEntry.innerText = book.name;
         nameEntry.id = `${data[i]._id}${'name'}`     
         nameList.appendChild(nameEntry);    
-        
-     
-        let button = createButton(data[i]._id);       
-        buttonList.appendChild(button);   
-        let select = createSelect(data[i]._id);
-        buttonList.appendChild(select);
+
+        let focusBox = createFocusBox(data[i]._id);
+        focusList.appendChild(focusBox);
+    
     }
 
 }
 
 //Send PATCH request with new value to update DB entry with. 
-function update(id){
+function update(){
  
     let newValue = document.getElementById('newName').value;    
-    let valueToChange = document.getElementById(`${id}value`).value; 
+    let valueToChange = document.getElementById(`valueToChange`).value; 
+    let id = document.getElementById('focus').value;
 
     fetch(`/update/${id}`, {
         method: 'PATCH',
@@ -120,4 +117,15 @@ function createSelect(id){
     selectOption.textContent = name;
     selectOption.value = name;
     return selectOption;
+}
+
+
+function createFocusBox(id){
+    let radio = document.createElement('input');
+    radio.type = 'radio';
+    radio.id = 'focus';
+    radio.name = 'focus';
+    radio.value = id;
+    radio.className = 'focus-styles';
+    return radio;
 }

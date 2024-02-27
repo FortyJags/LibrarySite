@@ -44,7 +44,8 @@ app.post('/create', (req, res) =>{
     res.send(data);
 });
 
-app.patch('/update/:id', async (req, res) =>{    
+app.patch('/update/:id', async (req, res) =>{  
+    console.log(req.params.id);  
     const updateData = req.body;
      let data = await Model.findByIdAndUpdate(req.params.id, updateData);
     res.send(data);
