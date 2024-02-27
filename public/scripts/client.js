@@ -63,9 +63,16 @@ function update(){
  
     let newValue = document.getElementById('newName').value;    
     let valueToChange = document.getElementById(`valueToChange`).value; 
-    let id = document.getElementById('focus').value;
+    let focusToggles = document.getElementsByName('focus');
+    let id;
 
-    fetch(`/update/${id}`, {
+    for(let i = 0; i < focusToggles.length; i++){
+        if(focusToggles[i].checked){
+            id = focusToggles[i].value;
+        }
+    }
+    
+   fetch(`/update/${id}`, {
         method: 'PATCH',
         headers:{
             'Content-type' : 'application/json'
