@@ -2,3 +2,8 @@
     display: inline-block;
     padding-left: 10%;
 }
+
+.buttons{
+    display: block;
+    margin-top: 15%;
+}

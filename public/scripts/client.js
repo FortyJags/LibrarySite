@@ -42,23 +42,22 @@ function showBooks(data){
 
 
         authorEntry.innerText = book.author;        
-        authorEntry.id = `${data[i]._id}${'author'}` 
-        authorEntry.class = 'list';
+        authorEntry.id = `${data[i]._id}${'author'}`         
         authorList.appendChild(authorEntry);   
 
         genreEntry.innerText = book.genre;
-        genreEntry.id = `${data[i]._id}${'genre'}`
-        genreEntry.class = 'list';
+        genreEntry.id = `${data[i]._id}${'genre'}`       
         genreList.appendChild(genreEntry);   
 
         nameEntry.innerText = book.name;
-        nameEntry.id = `${data[i]._id}${'name'}`
-        nameEntry.class = 'list';
+        nameEntry.id = `${data[i]._id}${'name'}`     
         nameList.appendChild(nameEntry);    
         
      
         let button = createButton(data[i]._id);       
         buttonList.appendChild(button);   
+        let select = createSelect(data[i]._id);
+        buttonList.appendChild(select);
     }
 
 }
@@ -66,19 +65,16 @@ function showBooks(data){
 //Send PATCH request with new name to update DB entry with. WIP
 function update(id){
  
-        let name = document.getElementById('newName').value;
-        let author = document.getElementById(`${id}author`).textContent;
-        let genre = document.getElementById(`${id}genre`).textContent;
-     
+    let newValue = document.getElementById('newName').value;    
+    let valueToChange = document.getElementById(`${id}value`).value; 
+
     fetch(`/update/${id}`, {
         method: 'PATCH',
         headers:{
             'Content-type' : 'application/json'
         },
         body: JSON.stringify({
-            'name': name,
-            'author': author,
-            'genre' : genre
+            [valueToChange] : newValue
         })
     }).then(response => response.json());
 }
@@ -89,7 +85,29 @@ function createButton(id){
     let button = document.createElement('button');
     button.id = id;
     button.innerText = 'Change value';
-    
+    button.className = 'buttons';
     button.addEventListener('click', function() {update(id)});
     return button;
+}
+
+
+function createSelect(id){
+    let select = document.createElement('select');
+    select.id = `${id}value`;
+
+    let nameOption = createSelectOptions('name');
+    let authorOption = createSelectOptions('author');
+    let genreOptions = createSelectOptions('genre');
+    select.appendChild(nameOption);
+    select.appendChild(authorOption);
+    select.appendChild(genreOptions);
+    return select;
+}
+
+
+ function createSelectOptions(name){
+    let selectOption = document.createElement('option');
+    selectOption.textContent = name;
+    selectOption.value = name;
+    return selectOption;
 }
