@@ -34,25 +34,32 @@ function showBooks(data){
 
    for(let i = 0; i < data.length; i++){
         let book = data[i];      
-        let authorEntry = document.createElement('p');
-        let genreEntry = document.createElement('p');
-        let nameEntry = document.createElement('p');
+        let table = document.getElementById('books');
+        let row = document.createElement('tr');
+        let focusList = document.createElement('td');
+        let nameEntry = document.createElement('td');
+        let authorEntry = document.createElement('td');
+        let genreEntry = document.createElement('td');
 
-
-        authorEntry.innerText = book.author;        
-        authorEntry.id = `${data[i]._id}${'author'}`         
-        authorList.appendChild(authorEntry);   
-
-        genreEntry.innerText = book.genre;
-        genreEntry.id = `${data[i]._id}${'genre'}`       
-        genreList.appendChild(genreEntry);   
-
-        nameEntry.innerText = book.name;
-        nameEntry.id = `${data[i]._id}${'name'}`     
-        nameList.appendChild(nameEntry);    
+        row.className = 'list';
 
         let focusBox = createFocusBox(data[i]._id);
         focusList.appendChild(focusBox);
+        row.appendChild(focusList);
+
+        authorEntry.innerText = book.author;        
+        authorEntry.id = `${data[i]._id}${'author'}`         
+        row.appendChild(authorEntry);   
+
+        genreEntry.innerText = book.genre;
+        genreEntry.id = `${data[i]._id}${'genre'}`       
+        row.appendChild(genreEntry);   
+
+        nameEntry.innerText = book.name;
+        nameEntry.id = `${data[i]._id}${'name'}`     
+        row.appendChild(nameEntry);    
+
+        table.appendChild(row);
     
     }
 
