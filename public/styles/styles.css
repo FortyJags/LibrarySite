@@ -4,6 +4,10 @@
 }
 
 .focus-styles{
-    display: block;
+    display: inline-block;
+}
 
+.focus-button{
+    display: block;
+    margin-bottom: 50%;
 }

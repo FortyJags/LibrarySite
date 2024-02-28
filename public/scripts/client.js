@@ -133,6 +133,6 @@ function createFocusBox(id){
     radio.id = 'focus';
     radio.name = 'focus';
     radio.value = id;
-    radio.className = 'focus-styles';
+    radio.className = 'focus-button';
     return radio;
 }
