@@ -41,22 +41,26 @@ function showBooks(data){
         let authorEntry = document.createElement('td');
         let genreEntry = document.createElement('td');
 
-        row.className = 'list';
+        row.className = 'row-style';
 
         let focusBox = createFocusBox(data[i]._id);
+        focusBox.className = 'row-style';  
         focusList.appendChild(focusBox);
         row.appendChild(focusList);
 
         authorEntry.innerText = book.author;        
-        authorEntry.id = `${data[i]._id}${'author'}`         
+        authorEntry.id = `${data[i]._id}${'author'}`     
+        authorEntry.className = 'row-style';      
         row.appendChild(authorEntry);   
 
         genreEntry.innerText = book.genre;
-        genreEntry.id = `${data[i]._id}${'genre'}`       
+        genreEntry.id = `${data[i]._id}${'genre'}`   
+        genreEntry.className = 'row-style';      
         row.appendChild(genreEntry);   
 
         nameEntry.innerText = book.name;
-        nameEntry.id = `${data[i]._id}${'name'}`     
+        nameEntry.id = `${data[i]._id}${'name'}` 
+        nameEntry.className = 'row-style';    
         row.appendChild(nameEntry);    
 
         table.appendChild(row);

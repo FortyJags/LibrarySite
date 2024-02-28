@@ -9,3 +9,13 @@
 .focus-button{
     display: block;  
 }
+
+table, th, td {
+    border: 2px solid black;
+    padding: 10%;
+    width: 40%;
+  }
+
+  .border{
+    border: 2px solid black;
+  }
