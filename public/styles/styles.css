@@ -12,10 +12,9 @@
 
 table, th, td {
     border: 2px solid black;
-    padding: 10%;
-    width: 40%;
-  }
+    width: 20%;
+}
 
   .border{
-    border: 2px solid black;
+    border: 1px solid black;
   }

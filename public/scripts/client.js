@@ -22,52 +22,46 @@ function createNew(){
     }).then(response => response.json()).then(data => console.log(data));
 }
 
+//pass json data through for loop, creating a table row for each object. Call createTableData to create each element in the table, append these to the table row.
 
-//Get all list titles. Pass json data through for loop, creating 3 p elements for each part. Append these to relevant list title. 
-function showBooks(data){
-    let nameList = document.getElementById('name-list');
-    let authorList = document.getElementById('author-list');
-    let genreList = document.getElementById('genre-list');
-    let focusList = document.getElementById('focus-list');
-
-   
+function showBooks(data){  
 
    for(let i = 0; i < data.length; i++){
         let book = data[i];      
         let table = document.getElementById('books');
         let row = document.createElement('tr');
         let focusList = document.createElement('td');
-        let nameEntry = document.createElement('td');
-        let authorEntry = document.createElement('td');
-        let genreEntry = document.createElement('td');
-
-        row.className = 'row-style';
+        let nameEntry = createTableData(book.name, data[i]._id);
+        let authorEntry = createTableData(book.author, data[i]._id);
+        let genreEntry = createTableData(book.genre, data[i]._id);
 
         let focusBox = createFocusBox(data[i]._id);
-        focusBox.className = 'row-style';  
+        focusBox.className = 'border';  
         focusList.appendChild(focusBox);
         row.appendChild(focusList);
-
-        authorEntry.innerText = book.author;        
-        authorEntry.id = `${data[i]._id}${'author'}`     
-        authorEntry.className = 'row-style';      
-        row.appendChild(authorEntry);   
-
-        genreEntry.innerText = book.genre;
-        genreEntry.id = `${data[i]._id}${'genre'}`   
-        genreEntry.className = 'row-style';      
-        row.appendChild(genreEntry);   
-
-        nameEntry.innerText = book.name;
-        nameEntry.id = `${data[i]._id}${'name'}` 
-        nameEntry.className = 'row-style';    
-        row.appendChild(nameEntry);    
-
+     
+  
+        row.appendChild(nameEntry); 
+        row.appendChild(authorEntry); 
+        row.appendChild(genreEntry); 
         table.appendChild(row);
     
     }
 
 }
+
+
+//creates a td element, populates the id and innerText with the provided text and id values.
+function createTableData(text, id){
+    let tableData = document.createElement('td');
+
+    tableData.innerText = text;
+    tableData.id = `${id}${'name'}` 
+    tableData.className = 'border';   
+    return tableData;
+    
+}
+
 
 //Send PATCH request with new value to update DB entry with. 
 function update(){
