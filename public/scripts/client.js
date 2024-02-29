@@ -109,27 +109,6 @@ function createButton(id){
     return button;
 }
 
-//Create select element, call createSelectOptions to create options for populating  newly formed select
-function createSelect(id){
-    let select = document.createElement('select');
-    select.id = `${id}value`;
-
-    let nameOption = createSelectOptions('name');
-    let authorOption = createSelectOptions('author');
-    let genreOptions = createSelectOptions('genre');
-    select.appendChild(nameOption);
-    select.appendChild(authorOption);
-    select.appendChild(genreOptions);
-    return select;
-}
-
-//Create option for select element using specified name as value
- function createSelectOptions(name){
-    let selectOption = document.createElement('option');
-    selectOption.textContent = name;
-    selectOption.value = name;
-    return selectOption;
-}
 
 
 function createFocusBox(id){
