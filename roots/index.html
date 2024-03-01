@@ -11,8 +11,7 @@
 </head>
 <body onload="getAll()">
     <h1>Library</h1>   
-    <br/>
-    <button onclick="getOne('Lord of the Rings')">Get One Test</button>         
+    <br/>         
     <table id="books">
         <tr>
             <td class="border">Focus</td>
@@ -38,5 +37,9 @@
         <br>
         <button onclick="update()">Update</button>
     </div>
+<div id="search" class="border side-panel">
+    <input id="search-query">
+    <button onclick="getOne()">Get One Test</button>   
+</div>
 </body>
 </html>
