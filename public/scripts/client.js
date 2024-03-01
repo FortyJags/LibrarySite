@@ -120,3 +120,7 @@ function createFocusBox(id){
     radio.className = 'focus-button';
     return radio;
 }
+
+function getOne(value){
+    fetch(`/find/${value}`).then(response => console.log(response));
+}
