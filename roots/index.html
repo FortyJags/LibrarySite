@@ -9,26 +9,33 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <title>Library Site</title>
 </head>
-<body>
-    <h1>Hello World!</h1>
-    <button onclick="getAll()">Show all Data</button>
-    <input id="name" type="text" placeholder="name">
-    <input id="genre" placeholder="genre">
-    <input id="author" placeholder="author">
-    <button onclick="createNew()">Create new</button>
-    <button onclick="update()">Update 1</button>
-    <select id="valueToChange">
-        <option value="name">Name</option>
-        <option value="author">Author</option>
-        <option value="genre">Genre</option>
-    </select>
-    <br/>    
-    <input id="newName" placeholder="newName">
-    <div id="books">
-    <p class="focus-styles" id="focus-list"></p>
-    <p class="list" id="name-list">Name</p>
-    <p class="list" id="author-list">Author</p>
-    <p class="list" id="genre-list">Genre</p>    
+<body onload="getAll()">
+    <h1>Library</h1>   
+    <br/>         
+    <table id="books">
+        <tr>
+            <td class="border">Focus</td>
+            <td class="border">Name</td>
+            <td class="border">Author</td>
+            <td class="border">Genre</td>
+        </tr>
+    </table>
+    <div id="create" class="border side-panel">
+        <input id="name" type="text" placeholder="name">
+        <input id="genre" placeholder="genre">
+        <input id="author" placeholder="author">
+        <button onclick="createNew()">Create new</button>      
+    </div>
+    <div id="update" class="border side-panel">        
+        <input id="newName" placeholder="newName">
+        <lable for="valueToChange">Value to change</lable>
+        <select id="valueToChange">
+            <option value="name">Name</option>
+            <option value="author">Author</option>
+            <option value="genre">Genre</option>
+        </select>
+        <br>
+        <button onclick="update()">Update</button>
     </div>
 </body>
 </html>

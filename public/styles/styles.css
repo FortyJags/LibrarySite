@@ -1,5 +1,4 @@
 .list{
-    display: inline-block;
     padding-left: 10%;
 }
 
@@ -9,5 +8,29 @@
 
 .focus-button{
     display: block;
-    margin-bottom: 50%;
+}
+
+/*generic table style*/
+table, th, td {
+    border: 2px solid black;
+    width: 40%;
+}
+
+.border{
+    border: 1px solid black;
+}
+
+.side-panel{  
+   float: right;
+   margin-right: 5%;
+   width: 10%;
+}
+
+
+#books{
+    margin-left: 20%;
+}
+
+h1{
+    text-align: center;
 }
