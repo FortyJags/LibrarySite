@@ -10,6 +10,7 @@
     display: block;
 }
 
+/*generic table style*/
 table, th, td {
     border: 2px solid black;
     width: 40%;
@@ -28,4 +29,8 @@ table, th, td {
 
 #books{
     margin-left: 20%;
+}
+
+h1{
+    text-align: center;
 }
