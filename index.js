@@ -56,9 +56,9 @@ app.delete('/delete/:id', async (req, res) =>{
     res.send(deletedItem);
 });
 
-app.get('/find/:value', async (req, res) =>{
+app.get('/find/:type/:value', async (req, res) =>{
     let entry = await Model.find({
-        'name': req.params.value
+        [req.params.type] : req.params.value
     });
     res.send(entry);
 })

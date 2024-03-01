@@ -20,13 +20,14 @@
             <td class="border">Genre</td>
         </tr>
     </table>
-    <div id="create" class="border side-panel">
+    <div id="functions" class="side-panel">
+    <div id="create" class="border">
         <input id="name" type="text" placeholder="name">
         <input id="genre" placeholder="genre">
         <input id="author" placeholder="author">
         <button onclick="createNew()">Create new</button>      
     </div>
-    <div id="update" class="border side-panel">        
+    <div id="update" class="border">        
         <input id="newName" placeholder="newName">
         <lable for="valueToChange">Value to change</lable>
         <select id="valueToChange">
@@ -37,9 +38,15 @@
         <br>
         <button onclick="update()">Update</button>
     </div>
-<div id="search" class="border side-panel">
+<div id="search" class="border">
     <input id="search-query">
+    <select id="search-variable">
+        <option value="name">Name</option>
+        <option value="author">Author</option>
+        <option value="genre">Genre</option>
+    </select>
     <button onclick="getOne()">Get One Test</button>   
+</div>
 </div>
 </body>
 </html>

@@ -123,5 +123,7 @@ function createFocusBox(id){
 
 function getOne(){
     let value = document.getElementById('search-query').value;
-    fetch(`/find/${value}`).then(res => res.json()).then(data => console.log(data));
+    let type = document.getElementById('search-variable').value; 
+
+    fetch(`/find/${type}/${value}`).then(res => res.json()).then(data => console.log(data));
 }
