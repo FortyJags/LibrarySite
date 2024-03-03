@@ -125,15 +125,15 @@ function getOne(){
     let value = document.getElementById('search-query').value;
     let type = document.getElementById('search-variable').value;
     
-    let currentDbEntries = document.getElementsByName('book-entry');
+    let currentDbEntries = Array.from(document.getElementsByName('book-entry'));
     console.log(currentDbEntries.length);
-    for(let i = 0; i < currentDbEntries.length; i++){
-        currentDbEntries[i].remove();
-        console.log('removing item');
-    }
+   
 
     fetch(`/find/${type}/${value}`).then(res => res.json()).then(data => {
-  
+        for(let i = 0; i < currentDbEntries.length; i++){
+           currentDbEntries[i].remove();
+            console.log('removing item ' + currentDbEntries[i].name + ' ' + typeof(currentDbEntries));
+        }
         console.log(data);
     });
 }
