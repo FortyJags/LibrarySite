@@ -30,6 +30,8 @@ function showBooks(data){
         let book = data[i];      
         let table = document.getElementById('books');
         let row = document.createElement('tr');
+        row.setAttribute('name', 'book-entry');
+
         let focusList = document.createElement('td');
         let nameEntry = createTableData(book.name, data[i]._id);
         let authorEntry = createTableData(book.author, data[i]._id);
@@ -53,8 +55,7 @@ function showBooks(data){
 
 //creates a td element, populates the id and innerText with the provided text and id values.
 function createTableData(text, id){
-    let tableData = document.createElement('td');
-
+    let tableData = document.createElement('td');   
     tableData.innerText = text;
     tableData.id = `${id}${'name'}` 
     tableData.className = 'border';   
@@ -114,7 +115,6 @@ function createButton(id){
 function createFocusBox(id){
     let radio = document.createElement('input');
     radio.type = 'radio';
-    radio.id = 'focus';
     radio.name = 'focus';
     radio.value = id;
     radio.className = 'focus-button';
@@ -123,7 +123,17 @@ function createFocusBox(id){
 
 function getOne(){
     let value = document.getElementById('search-query').value;
-    let type = document.getElementById('search-variable').value; 
+    let type = document.getElementById('search-variable').value;
+    
+    let currentDbEntries = document.getElementsByName('book-entry');
+    console.log(currentDbEntries.length);
+    for(let i = 0; i < currentDbEntries.length; i++){
+        currentDbEntries[i].remove();
+        console.log('removing item');
+    }
 
-    fetch(`/find/${type}/${value}`).then(res => res.json()).then(data => console.log(data));
+    fetch(`/find/${type}/${value}`).then(res => res.json()).then(data => {
+  
+        console.log(data);
+    });
 }
