@@ -22,35 +22,6 @@ function createNew(){
     }).then(res => res.json()).then(data => console.log(data));
 }
 
-//pass json data through for loop, creating a table row for each object. Call createTableData to create each element in the table, append these to the table row.
-
-function showBooks(data){  
-
-   for(let i = 0; i < data.length; i++){
-        let book = data[i];      
-        let table = document.getElementById('books');
-        let row = document.createElement('tr');
-        row.setAttribute('name', 'book-entry');
-
-        let focusList = document.createElement('td');
-        let nameEntry = createTableData(book.name, data[i]._id);
-        let authorEntry = createTableData(book.author, data[i]._id);
-        let genreEntry = createTableData(book.genre, data[i]._id);
-
-        let focusBox = createFocusBox(data[i]._id);
-        focusBox.className = 'border';  
-        focusList.appendChild(focusBox);
-        row.appendChild(focusList);
-     
-  
-        row.appendChild(nameEntry); 
-        row.appendChild(authorEntry); 
-        row.appendChild(genreEntry); 
-        table.appendChild(row);
-    
-    }
-
-}
 
 
 //creates a td element, populates the id and innerText with the provided text and id values.
@@ -126,14 +97,46 @@ function getOne(){
     let type = document.getElementById('search-variable').value;
     
     let currentDbEntries = Array.from(document.getElementsByName('book-entry'));
-    console.log(currentDbEntries.length);
+    console.log(value);
    
-
+    if(value != ''){    
     fetch(`/find/${type}/${value}`).then(res => res.json()).then(data => {
         for(let i = 0; i < currentDbEntries.length; i++){
-           currentDbEntries[i].remove();
-            console.log('removing item ' + currentDbEntries[i].name + ' ' + typeof(currentDbEntries));
+           currentDbEntries[i].remove();           
         }
-        console.log(data);
-    });
+        
+        showBooks(data);
+        
+    })};
 }
+
+
+//pass json data through for loop, creating a table row for each object. Call createTableData to create each element in the table, append these to the table row.
+
+function showBooks(data){  
+
+    for(let i = 0; i < data.length; i++){
+         let book = data[i];      
+         let table = document.getElementById('books');
+         let row = document.createElement('tr');
+         row.setAttribute('name', 'book-entry');
+ 
+         let focusList = document.createElement('td');
+         let nameEntry = createTableData(book.name, data[i]._id);
+         let authorEntry = createTableData(book.author, data[i]._id);
+         let genreEntry = createTableData(book.genre, data[i]._id);
+ 
+         let focusBox = createFocusBox(data[i]._id);
+         focusBox.className = 'border';  
+         focusList.appendChild(focusBox);
+         row.appendChild(focusList);
+      
+   
+         row.appendChild(nameEntry); 
+         row.appendChild(authorEntry); 
+         row.appendChild(genreEntry); 
+         table.appendChild(row);
+     
+     }
+ 
+ }
