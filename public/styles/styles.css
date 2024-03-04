@@ -21,8 +21,9 @@ table, th, td {
 }
 
 .side-panel{  
-   float: right;
-   margin-right: 5%;
+    position: fixed;
+   left: 90%;
+   top: 0%;
    width: 10%;
 }
 

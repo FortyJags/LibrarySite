@@ -9,8 +9,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <title>Library Site</title>
 </head>
-<body onload="getAll()">
-    <h1>Library</h1>   
+<body>
+    <h1>Library</h1> 
+    <button onclick="getAll()">Show All</button>  
     <br/>         
     <table id="books">
         <tr>
@@ -20,13 +21,16 @@
             <td class="border">Genre</td>
         </tr>
     </table>
-    <div id="create" class="border side-panel">
+    <div id="functions" class="side-panel">
+    <div id="create" class="border">
+        <h2>Create</h2>
         <input id="name" type="text" placeholder="name">
         <input id="genre" placeholder="genre">
         <input id="author" placeholder="author">
         <button onclick="createNew()">Create new</button>      
     </div>
-    <div id="update" class="border side-panel">        
+    <div id="update" class="border">   
+        <h2>Update</h2>     
         <input id="newName" placeholder="newName">
         <lable for="valueToChange">Value to change</lable>
         <select id="valueToChange">
@@ -37,5 +41,16 @@
         <br>
         <button onclick="update()">Update</button>
     </div>
+<div id="search" class="border">
+    <h2>Search</h2>
+    <input id="search-query">
+    <select id="search-variable">
+        <option value="name">Name</option>
+        <option value="author">Author</option>
+        <option value="genre">Genre</option>
+    </select>
+    <button onclick="getOne()">Get One Test</button>   
+</div>
+</div>
 </body>
 </html>

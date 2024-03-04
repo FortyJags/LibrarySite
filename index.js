@@ -55,3 +55,10 @@ app.delete('/delete/:id', async (req, res) =>{
     let deletedItem = await Model.findByIdAndDelete(req.params.id);
     res.send(deletedItem);
 });
+
+app.get('/find/:type/:value', async (req, res) =>{
+    let entry = await Model.find({
+        [req.params.type] : req.params.value
+    });
+    res.send(entry);
+})
