@@ -1,6 +1,10 @@
 //Get all entries in DB, then call showBooks
 function getAll(){
-    fetch('/all').then(res => res.json()).then(data => showBooks(data));
+    fetch('/all').then(res => res.json()).then(data =>{ 
+        let dataToDisplay =  getTen(data, 2);
+        showBooks(dataToDisplay);
+    
+    });
 }
 
 //Create new Entry in DB. Take input from 3 input fields, send POST request and display json result to console
@@ -114,6 +118,7 @@ function getOne(){
 //pass json data through for loop, creating a table row for each object. Call createTableData to create each element in the table, append these to the table row.
 
 function showBooks(data){  
+    
 
     for(let i = 0; i < data.length; i++){
          let book = data[i];      
@@ -139,4 +144,19 @@ function showBooks(data){
      
      }
  
+ }
+
+ //takes json data and int pageNum, returns data from the json based off of what pageNum is provided. For displaying a few results at a time in a table
+ function getTen(data, pageNum){
+
+    let dataToReturn = [];
+        for(let i = ((pageNum * 10) - 10); i < (pageNum * 10); i++){
+           if(data[i] != undefined){
+            dataToReturn.push(data[i]);
+            }
+           else{
+                return dataToReturn;
+            }
+        }
+        return dataToReturn;
  }
