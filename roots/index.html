@@ -11,7 +11,7 @@
 </head>
 <body>
     <h1>Library</h1> 
-    <button onclick="getAll()">Show All</button>  
+    <button onclick="getAll(1)">Show All</button>  
     <br/>         
     <table id="books">
         <tr>
@@ -21,6 +21,8 @@
             <td class="border">Genre</td>
         </tr>
     </table>
+    <button name="pageSelect" onclick="getAll(1)">1</p>
+    <button name="pageSelect" onclick="getAll(2)">2</p>
     <div id="functions" class="side-panel">
     <div id="create" class="border">
         <h2>Create</h2>

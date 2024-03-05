@@ -1,7 +1,7 @@
 //Get all entries in DB, then call showBooks
-function getAll(){
+function getAll(page){
     fetch('/all').then(res => res.json()).then(data =>{ 
-        let dataToDisplay =  getTen(data, 2);
+        let dataToDisplay =  getTen(data, page);
         showBooks(dataToDisplay);
     
     });
