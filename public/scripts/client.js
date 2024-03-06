@@ -10,15 +10,22 @@ function getAll(page){
 
 function createPageButton(dataAmount){
     let div = document.getElementById('pages');
-    let pagesNeeded = dataAmount / 10;
-    for(let i = 1; i < pagesNeeded; i++){
+    let pagesNeeded;
+
+    if((dataAmount / 10) % 1 > 0){
+        console.log('decimal found'); 
+        let round = 1 - ((dataAmount / 10) % 1);       
+        pagesNeeded = (dataAmount / 10) + round;      
+    }    
+
+    for(let i = 1; i <= pagesNeeded; i++){
         let bttn = document.createElement('button');
         bttn.addEventListener('click', function(){ getAll(i);});
         bttn.textContent = i;
         div.appendChild(bttn);
-    }
-    console.log(pagesNeeded);
+    } 
 }
+
 
 //Create new Entry in DB. Take input from 3 input fields, send POST request and display json result to console
 function createNew(){
