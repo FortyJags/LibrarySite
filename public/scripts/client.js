@@ -3,8 +3,21 @@ function getAll(page){
     fetch('/all').then(res => res.json()).then(data =>{ 
         let dataToDisplay =  getTen(data, page);
         showBooks(dataToDisplay);
+        createPageButton(data.length);
     
     });
+}
+
+function createPageButton(dataAmount){
+    let div = document.getElementById('pages');
+    let pagesNeeded = dataAmount / 10;
+    for(let i = 1; i < pagesNeeded; i++){
+        let bttn = document.createElement('button');
+        bttn.addEventListener('click', function(){ getAll(i);});
+        bttn.textContent = i;
+        div.appendChild(bttn);
+    }
+    console.log(pagesNeeded);
 }
 
 //Create new Entry in DB. Take input from 3 input fields, send POST request and display json result to console
