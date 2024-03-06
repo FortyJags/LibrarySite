@@ -9,9 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <title>Library Site</title>
 </head>
-<body>
-    <h1>Library</h1> 
-    <button onclick="getAll()">Show All</button>  
+<body onload="getAll(1)">
+    <h1>Library</h1>     
     <br/>         
     <table id="books">
         <tr>
@@ -19,8 +18,10 @@
             <td class="border">Name</td>
             <td class="border">Author</td>
             <td class="border">Genre</td>
-        </tr>
+        </tr>   
     </table>
+    <div id="pages"></div>
+
     <div id="functions" class="side-panel">
     <div id="create" class="border">
         <h2>Create</h2>
