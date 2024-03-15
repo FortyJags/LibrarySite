@@ -1,141 +1,7 @@
-//Get all entries in DB, then call showBooks
-function getAll(page){
-    fetch('/all').then(res => res.json()).then(data =>{ 
-        let dataToDisplay =  getTen(data, page);
-        showBooks(dataToDisplay);
-        createPageButton(data.length);
-    
-    });
-}
-
-function createPageButton(dataAmount){
-    let div = document.getElementById('pages');
-    let pagesNeeded;
-
-    if((dataAmount / 10) % 1 > 0){
-        console.log('decimal found'); 
-        let round = 1 - ((dataAmount / 10) % 1);       
-        pagesNeeded = (dataAmount / 10) + round;      
-    }    
-
-    for(let i = 1; i <= pagesNeeded; i++){
-        let bttn = document.createElement('button');
-        bttn.addEventListener('click', function(){ getAll(i);});
-        bttn.textContent = i;
-        div.appendChild(bttn);
-    } 
-}
-
-
-//Create new Entry in DB. Take input from 3 input fields, send POST request and display json result to console
-function createNew(){
-    let name = document.getElementById('name').value;
-    let author = document.getElementById('author').value;
-    let genre = document.getElementById('genre').value;
-
-    fetch('/create', {
-        method: 'POST',
-        headers:{
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            'name': name,
-            'author': author,
-            'genre': genre
-        })
-    }).then(res => res.json()).then(data => console.log(data));
-}
-
-
-
-//creates a td element, populates the id and innerText with the provided text and id values.
-function createTableData(text, id){
-    let tableData = document.createElement('td');   
-    tableData.innerText = text;
-    tableData.id = `${id}${'name'}` 
-    tableData.className = 'border';   
-    return tableData;
-    
-}
-
-
-//Send PATCH request with new value to update DB entry with. 
-function update(){
- 
-    let newValue = document.getElementById('newName').value;    
-    let valueToChange = document.getElementById(`valueToChange`).value; 
-    let focusToggles = document.getElementsByName('focus');
-    let id;
-
-    for(let i = 0; i < focusToggles.length; i++){
-        if(focusToggles[i].checked){
-            id = focusToggles[i].value;
-        }
-    }
-    
-   fetch(`/update/${id}`, {
-        method: 'PATCH',
-        headers:{
-            'Content-type' : 'application/json'
-        },
-        body: JSON.stringify({
-            [valueToChange] : newValue
-        })
-    }).then(res => res.json());
-}
-
-
-function deleteItem(id){
-    fetch(`/delete/${id}`, {
-        method:'DELETE',
-        headers:{
-            'Content-type' : 'application/json'
-        }
-    }).then(res => console.log(res));
-    
-}
-
-//Generate new 'Change value' button
-function createButton(id){
-    let button = document.createElement('button');
-    button.id = id;
-    button.innerText = 'Change value';
-    button.className = 'buttons';
-    button.addEventListener('click', function() {update(id)});
-    return button;
-}
-
-
-
-function createFocusBox(id){
-    let radio = document.createElement('input');
-    radio.type = 'radio';
-    radio.name = 'focus';
-    radio.value = id;
-    radio.className = 'focus-button';
-    return radio;
-}
-
-function getOne(){
-    let value = document.getElementById('search-query').value;
-    let type = document.getElementById('search-variable').value;
-    
-    let currentDbEntries = Array.from(document.getElementsByName('book-entry'));
-    console.log(value);
-   
-    if(value != ''){    
-    fetch(`/find/${type}/${value}`).then(res => res.json()).then(data => {
-        for(let i = 0; i < currentDbEntries.length; i++){
-           currentDbEntries[i].remove();           
-        }
-        
-        showBooks(data);
-        
-    })};
-}
-
 
 //pass json data through for loop, creating a table row for each object. Call createTableData to create each element in the table, append these to the table row.
+
+const { Model } = require("mongoose");
 
 function showBooks(data){  
     
@@ -180,3 +46,16 @@ function showBooks(data){
         }
         return dataToReturn;
  }
+
+ //Clears the current table
+ function clearTable(listToClear){
+    console.log(listToClear);
+    let currentList = Array.from(document.getElementsByName(listToClear));
+    for(let i = 0; i < currentList.length; i++){
+        currentList[i].remove();           
+     }
+
+ }
+
+
+ export {getTen, clearTable, showBooks};
